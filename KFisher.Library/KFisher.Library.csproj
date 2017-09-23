@@ -44,12 +44,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTOs\UserDto.cs" />
-    <Compile Include="Mappings\AuthenticationMappings.cs" />
+    <Compile Include="Mappings\AuthenticationProfile.cs" />
     <Compile Include="Mappings\AutoMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KFisher.Entities\KFisher.Entities.csproj">
+      <Project>{3EFB7A6B-FF50-422E-826A-1FAACEDCCF39}</Project>
+      <Name>KFisher.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

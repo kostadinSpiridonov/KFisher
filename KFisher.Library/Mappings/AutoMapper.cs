@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System.Reflection;
 
 namespace KFisher.Library.Mappings
 {
@@ -6,7 +7,14 @@ namespace KFisher.Library.Mappings
     {
         public static void Configure()
         {
-            Mapper.Initialize((map) => { });
+            var assemblyName = AutoMapper.GetAssemblyName();
+            Mapper.Initialize(cfg =>
+                cfg.AddProfiles(new[] { assemblyName }));
+        }
+
+        private static string GetAssemblyName()
+        {
+            return AssemblyName.GetAssemblyName(Assembly.GetExecutingAssembly().FullName).Name;
         }
     }
 }

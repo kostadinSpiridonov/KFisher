@@ -11,6 +11,8 @@ using SimpleInjector.Integration.WebApi;
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
+using System.Web.Optimization;
+using System.Web.Routing;
 
 [assembly: OwinStartup(typeof(Startup))]
 
@@ -20,6 +22,15 @@ namespace KFisher.WebApi.App_Start
     {
         public void Configuration(IAppBuilder app)
         {
+            AreaRegistration.RegisterAllAreas();
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+
+            var container = DependencyContainer.GetContainer();
+            container.RegisterWebApiControllers(GlobalConfiguration.Configuration);
+
             ConfigureOAuth(app);
 
             var config = new HttpConfiguration();
@@ -27,8 +38,6 @@ namespace KFisher.WebApi.App_Start
 
             app.UseWebApi(config);
 
-            var container = DependencyContainer.GetContainer();
-            container.RegisterWebApiControllers(GlobalConfiguration.Configuration);
 
             container.Verify();
 
@@ -39,7 +48,7 @@ namespace KFisher.WebApi.App_Start
 
         public void ConfigureOAuth(IAppBuilder app)
         {
-            var authManager= DependencyContainer.GetContainer().GetInstance<IAuthenticationManager>();
+            var authManager = DependencyContainer.GetContainer().GetInstance<IAuthenticationManager>();
             var oAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
                 AllowInsecureHttp = true,
@@ -50,7 +59,10 @@ namespace KFisher.WebApi.App_Start
 
             // Token Generation
             app.UseOAuthAuthorizationServer(oAuthServerOptions);
-            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
+            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions
+            {
+                Provider = new OAuthBearerAuthenticationProvider()
+            });
         }
     }
 }

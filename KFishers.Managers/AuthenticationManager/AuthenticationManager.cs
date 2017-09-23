@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using KFisher.Library.DTOs;
 using KFisher.Services;
+using AutoMapper;
 
 namespace KFishers.Managers
 {
@@ -16,8 +17,7 @@ namespace KFishers.Managers
         public Task<UserDto> FindUser(string email, string password)
         {
             return this.authenticationService.Find(x => x.Email == email && x.Password == password)
-                //TODO: set up automapper
-                .ContinueWith(x => new UserDto());
+                .ContinueWith(x => Mapper.Map<UserDto>(x));
         }
     }
 }
