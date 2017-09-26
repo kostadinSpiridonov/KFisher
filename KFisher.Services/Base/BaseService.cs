@@ -11,7 +11,7 @@ namespace KFisher.Services
         protected readonly IDbSet<T> dbSet;
 
         protected readonly IApplicationDbContext context;
-
+        
         public BaseService(IApplicationDbContext context)
         {
             this.context = context;

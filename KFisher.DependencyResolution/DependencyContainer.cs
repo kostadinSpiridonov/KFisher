@@ -7,14 +7,20 @@ namespace KFisher.DependencyResolution
 {
     public static class DependencyContainer
     {
+        private static Container container { get; set; }
+
         public static Container GetContainer()
         {
-            var container = new Container();
+            if (container == null)
+            {
+                container = new Container();
+            }
+
             container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
 
-            container.Register<IAuthenticationService, AuthenticationService>();
-            container.Register<IAuthenticationManager, KFishers.Managers.AuthenticationManager>();
-            container.Register<IAuthenticationService, AuthenticationService>();
+            container.Register<IAuthenticationService, AuthenticationService>(Lifestyle.Singleton);
+            container.Register<IAuthenticationManager, KFishers.Managers.AuthenticationManager>(Lifestyle.Singleton);
+            container.Register<IAuthenticationService, AuthenticationService>(Lifestyle.Singleton);
 
             return container;
         }
