@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTOs\UserDto.cs" />
+    <Compile Include="Helpers\AssemblyHelper.cs" />
     <Compile Include="Mappings\AuthenticationProfile.cs" />
     <Compile Include="Mappings\AutoMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
