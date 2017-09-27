@@ -52,6 +52,11 @@
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="IApplicationDbContext.cs" />
+    <Compile Include="Migrations\201709271035417_UserTable.cs" />
+    <Compile Include="Migrations\201709271035417_UserTable.Designer.cs">
+      <DependentUpon>201709271035417_UserTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +68,11 @@
       <Project>{3efb7a6b-ff50-422e-826a-1faacedccf39}</Project>
       <Name>KFisher.Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201709271035417_UserTable.resx">
+      <DependentUpon>201709271035417_UserTable.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

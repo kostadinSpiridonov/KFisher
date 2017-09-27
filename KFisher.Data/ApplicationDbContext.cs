@@ -9,7 +9,7 @@ namespace KFisher.Data
 
         // TODO: move the default connection name
         public ApplicationDbContext()
-            : base("DefaultConnection")
+            : base("KFisherConnection")
         {
             this.Configure();
         }
