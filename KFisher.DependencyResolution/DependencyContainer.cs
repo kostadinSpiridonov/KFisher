@@ -3,28 +3,59 @@ using KFisher.Services;
 using KFishers.Managers;
 using SimpleInjector;
 using SimpleInjector.Lifestyles;
+using System.Web.Http;
 
 namespace KFisher.DependencyResolution
 {
     public static class DependencyContainer
     {
-        private static Container container { get; set; }
+        private static Container container;
 
-        public static bool IsCreated { get; set; }
-        public static Container GetContainer()
+        public static Container Container
         {
-            if (container == null)
+            get
             {
-                IsCreated = true;
-                container = new Container();
-                container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
-                container.Register<IAuthenticationService, AuthenticationService>();
-                container.Register<IAuthenticationManager, AuthenticationManager>();
-                container.RegisterSingleton<IApplicationDbContext>(new ApplicationDbContext());
+                return container;
             }
+        }
 
+        public static void ConfigureContainer(HttpConfiguration configuration)
+        {
+            container = new Container();
 
-            return container;
+            SetBaseContainerSettings();
+            RegisterDataAccess();
+            RegisterBusinessLogic();
+            RegisterDatabase();
+            RegisterWebApiControllers();
+
+            container.Verify();
+
+        }
+
+        private static void SetBaseContainerSettings()
+        {
+            container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
+        }
+
+        private static void RegisterDataAccess()
+        {
+            container.Register<IAuthenticationService, AuthenticationService>();
+        }
+
+        private static void RegisterBusinessLogic()
+        {
+            container.Register<IAuthenticationManager, AuthenticationManager>();
+        }
+
+        private static void RegisterDatabase()
+        {
+            container.RegisterSingleton<IApplicationDbContext>(new ApplicationDbContext());
+        }
+
+        private static void RegisterWebApiControllers()
+        {
+            container.RegisterWebApiControllers(GlobalConfiguration.Configuration);
         }
     }
 }

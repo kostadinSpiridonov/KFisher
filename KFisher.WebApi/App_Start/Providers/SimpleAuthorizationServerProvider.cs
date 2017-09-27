@@ -2,7 +2,6 @@
 using Microsoft.Owin.Security.OAuth;
 using System.Security.Claims;
 using KFishers.Managers;
-using System.Collections.Generic;
 
 namespace KFisher.WebApi.App_Start.Providers
 {

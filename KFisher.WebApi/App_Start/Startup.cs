@@ -6,8 +6,6 @@ using KFishers.Managers;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
-using SimpleInjector;
-using SimpleInjector.Integration.Web.Mvc;
 using SimpleInjector.Integration.WebApi;
 using System;
 using System.Web.Http;
@@ -16,12 +14,24 @@ using System.Web.Optimization;
 using System.Web.Routing;
 
 [assembly: OwinStartup(typeof(Startup))]
-
 namespace KFisher.WebApi.App_Start
 {
     public class Startup
     {
         public void Configuration(IAppBuilder app)
+        {
+            ConfigureDependecyContainer();
+            RegisterConfigs();
+            ConfigureWebApi(app);
+            ConfigureOAuth(app);
+        }
+
+        private void ConfigureDependecyContainer()
+        {
+            DependencyContainer.ConfigureContainer(GlobalConfiguration.Configuration);
+        }
+
+        private void RegisterConfigs()
         {
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
@@ -29,37 +39,30 @@ namespace KFisher.WebApi.App_Start
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             GlobalConfiguration.Configure(WebApiConfig.Register);
             AutoMapper.Configure();
-
-            var container = DependencyContainer.GetContainer();
-            container.RegisterWebApiControllers(GlobalConfiguration.Configuration);
-
-            ConfigureOAuth(app);
-
-            var config = new HttpConfiguration();
-            WebApiConfig.Register(config);
-
-            app.UseWebApi(config);
-
-
-            container.Verify();
-
-            DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
-            GlobalConfiguration.Configuration.DependencyResolver =
-                new SimpleInjectorWebApiDependencyResolver(container);
         }
 
-        public void ConfigureOAuth(IAppBuilder app)
+        private void ConfigureWebApi(IAppBuilder app)
         {
-            var authManager = DependencyContainer.GetContainer().GetInstance<IAuthenticationManager>();
+            var config = new HttpConfiguration()
+            {
+                DependencyResolver = new SimpleInjectorWebApiDependencyResolver(DependencyContainer.Container)
+            };
+
+            WebApiConfig.Register(config);
+            app.UseWebApi(config);
+        }
+
+        private void ConfigureOAuth(IAppBuilder app)
+        {
+            var authManager = DependencyResolution.DependencyContainer.Container.GetInstance<IAuthenticationManager>();
             var oAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
                 AllowInsecureHttp = true,
-                TokenEndpointPath = new PathString("/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
+                TokenEndpointPath = new PathString("/authenticate"),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
                 Provider = new SimpleAuthorizationServerProvider(authManager)
             };
 
-            // Token Generation
             app.UseOAuthAuthorizationServer(oAuthServerOptions);
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions
             {

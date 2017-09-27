@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using KFisher.Library.Helpers;
 
 namespace KFisher.Library.Mappings
 {
@@ -7,7 +6,7 @@ namespace KFisher.Library.Mappings
     {
         public static void Configure()
         {
-            var assembly = AssemblyHelper.GetAssemblyByTypeName(nameof(AutoMapper));
+            var assembly = typeof(AutoMapper)?.Assembly;
             Mapper.Initialize(cfg => cfg.AddProfiles(assembly));
         }
     }
