@@ -1,4 +1,5 @@
 ﻿using KFisher.DependencyResolution;
+using KFisher.Library.Mappings;
 using KFisher.WebApi.App_Start;
 using KFisher.WebApi.App_Start.Providers;
 using KFishers.Managers;
@@ -27,6 +28,7 @@ namespace KFisher.WebApi.App_Start
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            AutoMapper.Configure();
 
             var container = DependencyContainer.GetContainer();
             container.RegisterWebApiControllers(GlobalConfiguration.Configuration);

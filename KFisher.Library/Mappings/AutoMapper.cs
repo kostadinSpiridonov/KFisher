@@ -7,14 +7,14 @@ namespace KFisher.Library.Mappings
     {
         public static void Configure()
         {
-            var assemblyName = AutoMapper.GetAssemblyName();
+            var assembly = AutoMapper.GetAssembly();
             Mapper.Initialize(cfg =>
-                cfg.AddProfiles(new[] { assemblyName }));
+                cfg.AddProfiles(assembly));
         }
 
-        private static string GetAssemblyName()
+        private static Assembly GetAssembly()
         {
-            return AssemblyName.GetAssemblyName(Assembly.GetExecutingAssembly().FullName).Name;
+            return typeof(AutoMapper).Assembly;
         }
     }
 }

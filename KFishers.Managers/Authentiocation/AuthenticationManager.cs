@@ -17,7 +17,7 @@ namespace KFishers.Managers
         public Task<UserDto> FindUser(string email, string password)
         {
             return this.authenticationService.Find(x => x.Email == email && x.Password == password)
-                .ContinueWith(x => Mapper.Map<UserDto>(x));
+                .ContinueWith(x => Mapper.Map<UserDto>(x.Result));
         }
     }
 }

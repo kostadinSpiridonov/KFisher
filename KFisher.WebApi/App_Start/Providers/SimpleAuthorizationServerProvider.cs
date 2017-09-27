@@ -25,7 +25,7 @@ namespace KFisher.WebApi.App_Start.Providers
 
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
-            var user = new { };/* await authenticationManager.FindUser(context.UserName, context.Password);*/
+            var user = await authenticationManager.FindUser(context.UserName, context.Password);
 
             if (user == null)
             {
@@ -38,15 +38,6 @@ namespace KFisher.WebApi.App_Start.Providers
             identity.AddClaim(new Claim("role", "user"));
 
             context.Validated(identity);
-        }
-
-        public override Task TokenEndpoint(OAuthTokenEndpointContext context)
-        {
-            foreach (KeyValuePair<string, string> property in context.Properties.Dictionary)
-            {
-                context.AdditionalResponseParameters.Add(property.Key, property.Value);
-            }
-            return Task.FromResult<object>(null);
         }
     }
 }

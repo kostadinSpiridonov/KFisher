@@ -50,8 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthenticationService\AuthenticationService.cs" />
-    <Compile Include="AuthenticationService\IAuthenticationService.cs" />
+    <Compile Include="Authentication\AuthenticationService.cs" />
+    <Compile Include="Authentication\IAuthenticationService.cs" />
     <Compile Include="Base\BaseService.cs" />
     <Compile Include="Base\IBaseService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
