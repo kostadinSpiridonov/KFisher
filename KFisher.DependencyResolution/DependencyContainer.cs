@@ -1,6 +1,7 @@
 ﻿using KFisher.Data;
 using KFisher.Services;
 using KFishers.Managers;
+using KFishers.Managers.Security;
 using SimpleInjector;
 using SimpleInjector.Lifestyles;
 using System.Web.Http;
@@ -46,6 +47,7 @@ namespace KFisher.DependencyResolution
         private static void RegisterBusinessLogic()
         {
             container.Register<IAuthenticationManager, AuthenticationManager>();
+            container.Register<IHashGenerator, HashGenerator>();
         }
 
         private static void RegisterDatabase()
