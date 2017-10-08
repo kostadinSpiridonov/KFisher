@@ -5,6 +5,6 @@ namespace KFishers.Managers
 {
     public interface IAuthenticationManager
     {
-        Task<UserDto> FindUser(string email, string password);
+        Task<bool> Authenticate(string email, string password);
     }
 }

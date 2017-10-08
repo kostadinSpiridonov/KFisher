@@ -24,9 +24,8 @@ namespace KFisher.WebApi.App_Start.Providers
 
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
-            var user = await authenticationManager.FindUser(context.UserName, context.Password);
-
-            if (user == null)
+            var authenticated = await authenticationManager.Authenticate(context.UserName, context.Password);
+            if (!authenticated)
             {
                 context.SetError("invalid_grant", "The user name or password is incorrect.");
                 return;

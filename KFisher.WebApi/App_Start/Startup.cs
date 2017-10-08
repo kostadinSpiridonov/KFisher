@@ -54,7 +54,7 @@ namespace KFisher.WebApi.App_Start
 
         private void ConfigureOAuth(IAppBuilder app)
         {
-            var authManager = DependencyResolution.DependencyContainer.Container.GetInstance<IAuthenticationManager>();
+            var authManager = DependencyContainer.Container.GetInstance<IAuthenticationManager>();
             var oAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
                 AllowInsecureHttp = true,

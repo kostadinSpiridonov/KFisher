@@ -7,5 +7,7 @@ namespace KFisher.Services
     public interface IBaseService<T> where T : class
     {
         Task<T> Find(Expression<Func<T, bool>> match);
+
+        Task<bool> Any(Expression<Func<T, bool>> match);
     }
 }
