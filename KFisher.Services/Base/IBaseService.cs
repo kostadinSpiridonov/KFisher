@@ -9,5 +9,7 @@ namespace KFisher.Services
         Task<T> Find(Expression<Func<T, bool>> match);
 
         Task<bool> Any(Expression<Func<T, bool>> match);
+
+        Task<T> Add(T model);
     }
 }

@@ -31,7 +31,6 @@ namespace KFisher.DependencyResolution
             RegisterWebApiControllers();
 
             container.Verify();
-
         }
 
         private static void SetBaseContainerSettings()
@@ -42,11 +41,13 @@ namespace KFisher.DependencyResolution
         private static void RegisterDataAccess()
         {
             container.Register<IAuthenticationService, AuthenticationService>();
+            container.Register<IUserService, UserService>();
         }
 
         private static void RegisterBusinessLogic()
         {
             container.Register<IAuthenticationManager, AuthenticationManager>();
+            container.Register<IUserManager, UserManager>();
             container.Register<IHashGenerator, HashGenerator>();
         }
 

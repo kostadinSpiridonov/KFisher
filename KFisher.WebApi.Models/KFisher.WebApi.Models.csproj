@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F4EB9E68-E3B5-4F88-8D20-441F398093E3}</ProjectGuid>
+    <ProjectGuid>{DF232AD7-9337-46D1-8F69-B03000537711}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>KFisher.Library</RootNamespace>
-    <AssemblyName>KFisher.Library</AssemblyName>
+    <RootNamespace>KFisher.WebApi.Models</RootNamespace>
+    <AssemblyName>KFisher.WebApi.Models</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,23 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTOs\UserDto.cs" />
-    <Compile Include="Mappings\UserProfile.cs" />
-    <Compile Include="Mappings\AutoMapperConfig.cs" />
+    <Compile Include="InputModels\User\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\KFisher.Entities\KFisher.Entities.csproj">
-      <Project>{3EFB7A6B-FF50-422E-826A-1FAACEDCCF39}</Project>
-      <Name>KFisher.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\KFisher.WebApi.Models\KFisher.WebApi.Models.csproj">
-      <Project>{df232ad7-9337-46d1-8f69-b03000537711}</Project>
-      <Name>KFisher.WebApi.Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

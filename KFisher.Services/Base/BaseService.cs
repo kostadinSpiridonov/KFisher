@@ -18,11 +18,19 @@ namespace KFisher.Services
             this.dbSet = context.Set<T>();
         }
 
+        public Task<T> Add(T model)
+        {
+            var entity = this.dbSet.Add(model);
+            this.context.SaveChangesAsync();
+
+            return Task.FromResult(entity);
+        }
+
         public Task<bool> Any(Expression<Func<T, bool>> match)
         {
             return this.dbSet.AnyAsync(match);
         }
-
+        
         public Task<T> Find(Expression<Func<T, bool>> match)
         {
             return this.dbSet.SingleOrDefaultAsync(match);

@@ -38,7 +38,7 @@ namespace KFisher.WebApi.App_Start
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            AutoMapper.Configure();
+            AutoMapperConfig.Configure();
         }
 
         private void ConfigureWebApi(IAppBuilder app)
