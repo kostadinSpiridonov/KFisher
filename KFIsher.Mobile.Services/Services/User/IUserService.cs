@@ -1,4 +1,4 @@
-﻿namespace KFIsher.Mobile.Services.Services.User
+﻿namespace KFIsher.Mobile.Services.Services
 {
     public interface IUserService
     {
