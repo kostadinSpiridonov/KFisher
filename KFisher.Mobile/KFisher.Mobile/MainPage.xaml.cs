@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using KFisher.Mobile.ViewModels.User;
+using KFIsher.Mobile.Services.Services;
 using Xamarin.Forms;
 
 namespace KFisher.Mobile
@@ -12,6 +9,9 @@ namespace KFisher.Mobile
         public MainPage()
         {
             InitializeComponent();
+
+            var userService = DependencyLocator.DependencyLocator.GetIntance<IUserService>();
+            var vm = new UserProfileViewModel(userService);
         }
     }
 }

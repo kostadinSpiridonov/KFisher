@@ -15,7 +15,7 @@ namespace KFIsher.Mobile.Services.Connection
         /// <param name="baseAddress"></param>
         /// <param name="url"></param>
         /// <returns><see cref="Task{HttpResponseMessage}"/></returns>
-        public Task<HttpResponseMessage> GetData(string baseAddress, string url)
+        public Task<HttpResponse> GetData(string baseAddress, string url)
         {
             var httpClient = HttpConnectionHelper.GetClient(baseAddress);
             return SendHttpRequestAsync(RequestType.GET, url, new { }, httpClient);
@@ -28,7 +28,7 @@ namespace KFIsher.Mobile.Services.Connection
         /// <param name="url"></param>
         /// <param name="credentials"></param>
         /// <returns><see cref="Task{HttpResponseMessage}"/></returns>
-        public Task<HttpResponseMessage> GetData(string baseAddress, string url, string token)
+        public Task<HttpResponse> GetData(string baseAddress, string url, string token)
         {
             var httpClient = HttpConnectionHelper.GetClient(baseAddress);
             HttpConnectionHelper.AddAuthorization(httpClient, token);
@@ -45,7 +45,7 @@ namespace KFIsher.Mobile.Services.Connection
         /// <param name="data"></param>
         /// <param name="credentials"></param>
         /// <returns><see cref="Task{HttpResponseMessage}"/></returns>
-        public Task<HttpResponseMessage> PostData<T>(string baseAddress, string url, T data, string token)
+        public Task<HttpResponse> PostData<T>(string baseAddress, string url, T data, string token)
         {
             var httpClient = HttpConnectionHelper.GetClient(baseAddress);
             HttpConnectionHelper.AddAuthorization(httpClient, token);
@@ -61,7 +61,7 @@ namespace KFIsher.Mobile.Services.Connection
         /// <param name="url"></param>
         /// <param name="data"></param>
         /// <returns><see cref="Task{HttpResponseMessage}"/></returns>
-        public Task<HttpResponseMessage> PostData<T>(string baseAddress, string url, T data)
+        public Task<HttpResponse> PostData<T>(string baseAddress, string url, T data)
         {
             var httpClient = HttpConnectionHelper.GetClient(baseAddress);
             return SendHttpRequestAsync(RequestType.POST, url, data, httpClient);
@@ -76,7 +76,7 @@ namespace KFIsher.Mobile.Services.Connection
         /// <param name="data"></param>
         /// <param name="credentials"></param>
         /// <returns><see cref="Task{HttpResponseMessage}"/></returns>
-        public Task<HttpResponseMessage> PutData<T>(string baseAddress, string url, T data, string token)
+        public Task<HttpResponse> PutData<T>(string baseAddress, string url, T data, string token)
         {
             var httpClient = HttpConnectionHelper.GetClient(baseAddress);
             HttpConnectionHelper.AddAuthorization(httpClient, token);
@@ -92,7 +92,7 @@ namespace KFIsher.Mobile.Services.Connection
         /// <param name="url"></param>
         /// <param name="data"></param>
         /// <returns><see cref="Task{HttpResponseMessage}"/></returns>
-        public Task<HttpResponseMessage> PutData<T>(string baseAddress, string url, T data)
+        public Task<HttpResponse> PutData<T>(string baseAddress, string url, T data)
         {
             var httpClient = HttpConnectionHelper.GetClient(baseAddress);
             return SendHttpRequestAsync(RequestType.PUT, url, data, httpClient);
@@ -107,7 +107,7 @@ namespace KFIsher.Mobile.Services.Connection
         /// <param name="data"></param>
         /// <param name="httpClient"></param>
         /// <returns><see cref="Task{HttpResponseMessage}"/></returns>
-        private async Task<HttpResponseMessage> SendHttpRequestAsync<T>(RequestType requestType, string url, T data, HttpClient httpClient)
+        private async Task<HttpResponse> SendHttpRequestAsync<T>(RequestType requestType, string url, T data, HttpClient httpClient)
         {
             try
             {
@@ -144,7 +144,7 @@ namespace KFIsher.Mobile.Services.Connection
                 }
 
                 httpClient.Dispose();
-                return httpResponse;
+                return new HttpResponse(httpResponse);
             }
             catch (Exception exception)
             {
@@ -156,7 +156,7 @@ namespace KFIsher.Mobile.Services.Connection
                 httpClient.Dispose();
             }
 
-            return null;
+            return new HttpResponse();
         }
     }
 }

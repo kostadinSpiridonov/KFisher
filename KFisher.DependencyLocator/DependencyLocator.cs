@@ -1,8 +1,9 @@
-﻿using Ninject;
+﻿using KFisher.Mobile.DependencyResolution;
+using Ninject;
 
-namespace KFIsher.Mobile.Services.DependencyResolution
+namespace KFisher.DependencyLocator
 {
-    public static class DependencyService
+    public static class DependencyLocator
     {
         /// <summary>
         /// Singleton instance of the kernel
@@ -18,7 +19,7 @@ namespace KFIsher.Mobile.Services.DependencyResolution
             {
                 if (kernelInstance == null)
                 {
-                    kernelInstance = new StandardKernel();
+                    kernelInstance = new StandardKernel(new HttpServicesModule(), new LocalServicesModule());
                 }
 
                 return kernelInstance;

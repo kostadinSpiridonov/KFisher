@@ -1,9 +1,10 @@
-﻿using KFIsher.Mobile.Services.Services;
+﻿using KFIsher.Mobile.Services.Connection;
+using KFIsher.Mobile.Services.Services;
 using Ninject.Modules;
 
-namespace KFIsher.Mobile.Services.DependencyResolution
+namespace KFisher.Mobile.DependencyResolution
 {
-    public class DependencyConfiguration : NinjectModule
+    public class HttpServicesModule : NinjectModule
     {
         /// <summary>
         /// Loads the module into the kernel
@@ -18,6 +19,7 @@ namespace KFIsher.Mobile.Services.DependencyResolution
         /// </summary>
         private void BindServices()
         {
+            Bind<IHttpConnection>().To<HttpConnection>();
             Bind<IUserService>().To<UserService>();
         }
     }

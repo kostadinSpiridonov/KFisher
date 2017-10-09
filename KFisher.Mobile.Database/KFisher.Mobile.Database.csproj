@@ -5,13 +5,13 @@
     <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{44FBF2B9-8AB8-48D8-B00B-CEF0D2FC7CC0}</ProjectGuid>
+    <ProjectGuid>{F8E52AEC-391C-4824-8573-19B6D65787BE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>KFIsher.Mobile.Services</RootNamespace>
-    <AssemblyName>KFIsher.Mobile.Services</AssemblyName>
+    <RootNamespace>KFisher.Mobile.Database</RootNamespace>
+    <AssemblyName>KFisher.Mobile.Database</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <NuGetPackageImportStamp>
@@ -35,35 +35,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Connection\ConnectionConfiguration.cs" />
-    <Compile Include="Connection\ConnectionEvents.cs" />
-    <Compile Include="Connection\ErrorEventArgs.cs" />
-    <Compile Include="Connection\HttpConnection.cs" />
-    <Compile Include="Connection\HttpResponse.cs" />
-    <Compile Include="Connection\IHttpConnection.cs" />
-    <Compile Include="Connection\HttpConnectionHelper.cs" />
-    <Compile Include="Connection\RequestType.cs" />
-    <Compile Include="Helpers\JsonHelper.cs" />
-    <Compile Include="Models\Request\UserRegisterModel.cs" />
-    <Compile Include="Models\Response\UserModel.cs" />
+    <Compile Include="Data\LocalStorage.cs" />
+    <Compile Include="Data\LocalStorageKeys.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\BaseService.cs" />
-    <Compile Include="Services\ServiceDefinitions.cs" />
-    <Compile Include="Services\User\IUserService.cs" />
-    <Compile Include="Services\User\UserService.cs" />
+    <Compile Include="Services\IAuthenticationServiceLS.cs" />
+    <Compile Include="Services\AuthenticationServiceLS.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="ModernHttpClient, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\modernhttpclient.2.4.2\lib\Portable-Net45+WinRT45+WP8+WPA81\ModernHttpClient.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Portable.Ninject.3.3.1\lib\portable-net4+sl5+wp8+win8+wpa81+monotouch+monoandroid+Xamarin.iOS\Ninject.dll</HintPath>
-    </Reference>
-    <Reference Include="SimpleInjector, Version=4.0.11.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
-      <HintPath>..\packages\SimpleInjector.4.0.11\lib\netstandard1.0\SimpleInjector.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.Forms.2.3.4.247\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Core.dll</HintPath>
@@ -78,12 +58,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\KFisher.Mobile.Database\KFisher.Mobile.Database.csproj">
-      <Project>{f8e52aec-391c-4824-8573-19b6d65787be}</Project>
-      <Name>KFisher.Mobile.Database</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
