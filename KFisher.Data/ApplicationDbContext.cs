@@ -7,6 +7,12 @@ namespace KFisher.Data
     {
         public IDbSet<User> Users { get; set; }
 
+        public IDbSet<Location> Locations { get; set; }
+
+        public IDbSet<Comment> Comments { get; set; }
+
+        public IDbSet<Story> Stories { get; set; }
+
         // TODO: move the default connection name
         public ApplicationDbContext()
             : base("KFisherConnection")

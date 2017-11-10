@@ -82,9 +82,15 @@
   <ItemGroup>
     <Compile Include="Authentication\AuthenticationManager.cs" />
     <Compile Include="Authentication\IAuthenticationManager.cs" />
+    <Compile Include="Comment\CommentManager.cs" />
+    <Compile Include="Comment\ICommentManager.cs" />
+    <Compile Include="Location\ILocationManager.cs" />
+    <Compile Include="Location\LocationManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\HashGenerator.cs" />
     <Compile Include="Security\IHashGenerator.cs" />
+    <Compile Include="Story\IStoryManager.cs" />
+    <Compile Include="Story\StoryManager.cs" />
     <Compile Include="User\IUserManager.cs" />
     <Compile Include="User\UserManager.cs" />
   </ItemGroup>
@@ -110,5 +116,6 @@
       <Name>KFisher.Services</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

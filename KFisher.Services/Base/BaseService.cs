@@ -3,6 +3,8 @@ using System;
 using System.Data.Entity;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace KFisher.Services
 {
@@ -30,10 +32,21 @@ namespace KFisher.Services
         {
             return this.dbSet.AnyAsync(match);
         }
-        
+
         public Task<T> Find(Expression<Func<T, bool>> match)
         {
             return this.dbSet.SingleOrDefaultAsync(match);
+        }
+
+        public Task<IEnumerable<T>> GetAll(int page, int pageSize)
+        {
+            var result = this.dbSet
+                  .AsNoTracking()
+                  .Skip((page - 1) * pageSize)
+                  .Take(pageSize)
+                  .ToArray();
+
+            return Task.FromResult<IEnumerable<T>>(result);
         }
     }
 }

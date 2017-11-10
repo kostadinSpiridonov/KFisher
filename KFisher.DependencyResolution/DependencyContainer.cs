@@ -42,6 +42,9 @@ namespace KFisher.DependencyResolution
         {
             container.Register<IAuthenticationService, AuthenticationService>();
             container.Register<IUserService, UserService>();
+            container.Register<ICommentService, CommentService>();
+            container.Register<IStoryService, StoryService>();
+            container.Register<ILocationService, LocationService>();
         }
 
         private static void RegisterBusinessLogic()
@@ -49,6 +52,9 @@ namespace KFisher.DependencyResolution
             container.Register<IAuthenticationManager, AuthenticationManager>();
             container.Register<IUserManager, UserManager>();
             container.Register<IHashGenerator, HashGenerator>();
+            container.Register<ICommentManager, CommentManager>();
+            container.Register<IStoryManager, StoryManager>();
+            container.Register<ILocationManager, LocationManager>();
         }
 
         private static void RegisterDatabase()

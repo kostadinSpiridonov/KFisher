@@ -43,7 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\CommentDto.cs" />
+    <Compile Include="DTOs\LocationDto.cs" />
+    <Compile Include="DTOs\PaginationRequestDto.cs" />
+    <Compile Include="DTOs\StoryDto.cs" />
     <Compile Include="DTOs\UserDto.cs" />
+    <Compile Include="Mappings\CommentProfile.cs" />
+    <Compile Include="Mappings\LocationProfile.cs" />
+    <Compile Include="Mappings\PaginationProfile.cs" />
+    <Compile Include="Mappings\StoryProfile.cs" />
     <Compile Include="Mappings\UserProfile.cs" />
     <Compile Include="Mappings\AutoMapperConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

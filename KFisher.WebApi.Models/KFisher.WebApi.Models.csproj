@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,7 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InputModels\User\UserModel.cs" />
+    <Compile Include="InputModels\Common\PaginationRequestModel.cs" />
+    <Compile Include="InputModels\Location\AddLocationModel.cs" />
+    <Compile Include="InputModels\Story\CreateStoryModel.cs" />
+    <Compile Include="InputModels\User\AddUserModel.cs" />
+    <Compile Include="OutputModels\Location\LocationModel.cs" />
+    <Compile Include="OutputModels\Story\BaseStoryModel.cs" />
+    <Compile Include="OutputModels\User\BaseUserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

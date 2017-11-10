@@ -4,18 +4,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KFisher.Entities
 {
-    public class User
+    public class Comment
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
         [Required]
-        public string Email { get; set; }
+        public string Content { get; set; }
 
         [Required]
-        public string Password { get; set; }
+        public Guid UserId { get; set; }
 
-        public string FullName { get; set; }
+        [ForeignKey(nameof(UserId))]
+        public User User { get; set; }
     }
 }

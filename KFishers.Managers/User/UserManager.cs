@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using KFisher.Library.DTOs;
 using KFisher.Services;
 using AutoMapper;

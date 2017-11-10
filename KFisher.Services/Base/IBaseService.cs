@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -11,5 +12,7 @@ namespace KFisher.Services
         Task<bool> Any(Expression<Func<T, bool>> match);
 
         Task<T> Add(T model);
+
+        Task<IEnumerable<T>> GetAll(int page, int pageSize);
     }
 }

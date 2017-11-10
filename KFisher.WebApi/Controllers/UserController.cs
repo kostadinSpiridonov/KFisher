@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using KFisher.Library.DTOs;
 using KFisher.WebApi.Models.InputModels;
+using KFisher.WebApi.Models.OutputModels;
 using KFishers.Managers;
 using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace KFisher.WebApi.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/user")]
     public class UserController : ApiController
     {
@@ -19,6 +21,7 @@ namespace KFisher.WebApi.Controllers
 
         [AllowAnonymous]
         [Route("register")]
+        [HttpPost]
         public async Task<IHttpActionResult> Register(UserModel model)
         {
             if (!ModelState.IsValid)
@@ -33,7 +36,7 @@ namespace KFisher.WebApi.Controllers
                 return InternalServerError();
             }
 
-            return Ok();
+            return Ok(Mapper.Map<BaseUserModel>(result));
         }
     }
 }

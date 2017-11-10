@@ -4,18 +4,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KFisher.Entities
 {
-    public class User
+    public class Location
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
-        [Required]
-        public string Email { get; set; }
+        public double Latitude { get; set; }
 
-        [Required]
-        public string Password { get; set; }
+        public double Longitude { get; set; }
 
-        public string FullName { get; set; }
+        public string Name { get; set; }
     }
 }

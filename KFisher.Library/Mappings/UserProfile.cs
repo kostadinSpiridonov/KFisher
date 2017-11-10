@@ -2,6 +2,7 @@
 using KFisher.Entities;
 using KFisher.Library.DTOs;
 using KFisher.WebApi.Models.InputModels;
+using KFisher.WebApi.Models.OutputModels;
 
 namespace KFisher.Library.Mappings
 {
@@ -12,6 +13,7 @@ namespace KFisher.Library.Mappings
             CreateMap<User, UserDto>();
             CreateMap<UserDto, User>();
             CreateMap<UserModel, UserDto>();
+            CreateMap<UserDto, BaseUserModel>();
         }
     }
 }
